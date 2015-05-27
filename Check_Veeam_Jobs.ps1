@@ -76,7 +76,7 @@ $global:OutMessage=""
 $global:Exitcode=""
 if( $args.Length -ge 1)
  {
-     {
+     foreach($value in $args) {
        if($nextIsJob -eq $true) { # parameter coming after -j switch
             if(($value.Length -eq 2) -and ($value.substring(0,1) -eq '-')){
                 $WrongParam=$true
