@@ -17,15 +17,16 @@ function CheckOneJob {
     if($JobCheck.IsBackupJob -eq $true) # Only Backup Jobs are checked
      {
         if($global:OutMessage -ne ""){$global:OutMessage+="<br>"}
-        $global:OutMessage+="Job name:"+$JobCheck.Name+" "
+
         if($JobCheck.isScheduleEnabled -eq $false){ # Disabled job -> WARNING
             if($DisabledJobs -eq $true){
-                $global:OutMessage+=" WARNING: Disabled job"
+                $global:OutMessage+="Job name:"+$JobCheck.Name+" WARNING: Disabled job"
                 if($global:ExitCode -lt 2){$global:ExitCode=1} # if no previous Critical status then switch to WARNING
                 }
             }
         else  # The job is enabled
          {
+            $global:OutMessage+="Job name:"+$JobCheck.Name+" "
             $lastStatus=$JobCheck.GetLastResult()
             if($($JobCheck.findlastsession()).State -eq "Working"){
                 $global:OutMessage+="OK: Job in progress"
