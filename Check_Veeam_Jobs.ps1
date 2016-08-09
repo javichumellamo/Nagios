@@ -47,7 +47,7 @@ function CheckOneJob {
                        }
                   }
                 else{  # Check last run date
-                    $LastRun=$JobCheck.ScheduleOptions.LatestRunLocal
+                    $LastRun=$JobCheck.ScheduleOptions.LatestRunLocal # Changed to work with Veeam V9
                     $global:OutMessage+="OK Last run "+$LastRun.year+"/"+("{0:D2}" -f $LastRun.Month)+"/"+("{0:D2}" -f $LastRun.Day)+" "+("{0:D2}" -f $LastRun.hour)+":"+("{0:D2}" -f $LastRun.Minute)+" "
                     if($JobCheck.IsContinuous -eq $true) {   # Continuous job
                         $EstRun=get-date
